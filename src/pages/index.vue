@@ -52,6 +52,9 @@ onMounted(() => {
           <a-tab-pane key="3" title="Picture">
             <TabsPicture />
           </a-tab-pane>
+          <a-tab-pane key="4" title="WebCam">
+            <TabsWebCam />
+          </a-tab-pane>
         </a-tabs>
       </ASpin>
     </a-typography>

@@ -278,9 +278,7 @@ onBeforeUnmount(() => {
   }, DISCONNECT_TIMEOUT)
 })
 function onPlay() {
-  setTimeout(() => {
-    emits('play', videoRef)
-  }, 2000)
+  emits('play', videoRef)
 }
 </script>
 
@@ -299,5 +297,10 @@ function onPlay() {
 <style lang="css" scoped>
 .video-wrap:hover .fullscreen-wrap {
   display: block;
+}
+
+.aspect-custom {
+  aspect-ratio: 16/9;
+  object-fit: fill;
 }
 </style>

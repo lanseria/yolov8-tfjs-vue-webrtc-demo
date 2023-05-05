@@ -2,7 +2,7 @@
 const isPlay = ref(false)
 const canvasRef = ref()
 const form = ref({
-  suuid: '原油泵房北',
+  suuid: '重油泵棚东',
 })
 function handlePlay() {
   isPlay.value = !isPlay.value
@@ -25,9 +25,9 @@ function onVideoPlayDetect(videoRef: Ref<HTMLVideoElement>) {
         </a-button>
       </a-form-item>
     </a-form>
-    <div class="relative">
-      <VideoRtc v-if="isPlay" :suuid="form.suuid" @play="onVideoPlayDetect" />
-      <canvas v-if="isPlay" ref="canvasRef" class="absolute top-0 w-full h-full" :width="inputShape[1]" :height="inputShape[2]" />
+    <div v-if="isPlay" class="relative">
+      <VideoRtc :suuid="form.suuid" @play="onVideoPlayDetect" />
+      <canvas ref="canvasRef" class="absolute top-0 w-full h-full" :width="inputShape[1]" :height="inputShape[2]" />
     </div>
   </div>
 </template>

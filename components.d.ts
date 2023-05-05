@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     TabsPicture: typeof import('./src/components/Tabs/TabsPicture.vue')['default']
     TabsVideo: typeof import('./src/components/Tabs/TabsVideo.vue')['default']
+    TabsWebCam: typeof import('./src/components/Tabs/TabsWebCam.vue')['default']
     TabsWebRTC: typeof import('./src/components/Tabs/TabsWebRTC.vue')['default']
     TabVideo: typeof import('./src/components/Tabs/TabVideo.vue')['default']
     VideoRtc: typeof import('./src/components/VideoRtc.vue')['default']

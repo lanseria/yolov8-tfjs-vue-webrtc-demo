@@ -46,10 +46,10 @@ function preprocess(source: HTMLVideoElement | HTMLImageElement, modelWidth: num
  */
 export async function detect(source: HTMLImageElement | HTMLVideoElement, canvasRef: HTMLCanvasElement, callback = () => {}) {
   const [modelWidth, modelHeight] = inputShape.value.slice(1, 3) // get model width and height
-  console.log(modelWidth, modelHeight)
+  // console.log(modelWidth, modelHeight)
   tf.engine().startScope() // start scoping tf engine
   const [input, xRatio, yRatio] = preprocess(source, modelWidth, modelHeight) // preprocess image
-  console.log(model.net)
+  // console.log(model.net)
   const res = model.net!.execute(input!) // inference model
   const transRes = res.transpose([0, 2, 1]) // transpose result [b, det, n] => [b, n, det]
   const boxes = tf.tidy(() => {
@@ -77,16 +77,15 @@ export async function detect(source: HTMLImageElement | HTMLVideoElement, canvas
 
   const nms = await tf.image.nonMaxSuppressionAsync(boxes, scores, 500, 0.45, 0.2) // NMS to filter boxes
 
-  const boxes_data = boxes.gather(nms, 0).dataSync() // indexing boxes by nms index
-  const scores_data = scores.gather(nms, 0).dataSync() // indexing scores by nms index
-  const classes_data = classes.gather(nms, 0).dataSync() // indexing classes by nms index
+  const boxes_data = await boxes.gather(nms, 0).data()
+  const scores_data = await scores.gather(nms, 0).data()
+  const classes_data = await classes.gather(nms, 0).data()
 
-  renderBoxes(canvasRef, boxes_data, scores_data, classes_data, [xRatio, yRatio]) // render boxes
-  tf.dispose([res, transRes, boxes, scores, classes, nms]) // clear memory
+  renderBoxes(canvasRef, boxes_data, scores_data, classes_data, [xRatio, yRatio])
 
+  tf.dispose([res, transRes, boxes, scores, classes, nms])
+  tf.engine().endScope()
   callback()
-
-  tf.engine().endScope() // end of scoping
 }
 
 /**
@@ -99,9 +98,10 @@ export function detectVideo(vidSource: HTMLVideoElement, canvasRef: HTMLCanvasEl
   /**
    * Function to detect every frame from video
    */
-  console.log(vidSource, canvasRef)
+  // console.log(vidSource, canvasRef)
   const detectFrame = async () => {
     if (vidSource.videoWidth === 0 && vidSource.srcObject === null) {
+      console.warn('vidSource.srcObject === null')
       const ctx = canvasRef.getContext('2d')
       ctx && ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height) // clean canvas
       return // handle if source is closed

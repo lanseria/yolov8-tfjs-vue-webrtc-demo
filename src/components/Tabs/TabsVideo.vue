@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { useFileSystemAccess } from '@vueuse/core'
 
+const canvasRef = ref()
+const videoRef = ref()
 const dataType = ref('Blob') as Ref<'Text' | 'ArrayBuffer' | 'Blob'>
 const { isSupported, file, open } = useFileSystemAccess({
   dataType,
@@ -14,15 +16,17 @@ const { isSupported, file, open } = useFileSystemAccess({
 })
 const videoUrl = ref('')
 watch(() => file.value, () => {
-  if (file.value) {
+  if (file.value)
     videoUrl.value = URL.createObjectURL(file.value)
-    console.log(videoUrl.value)
-  }
 })
 onMounted(() => {
   if (!isSupported.value)
     alert('该浏览器不支持 File System Access API !')
 })
+function onVideoPlayDetect() {
+  //
+  detectVideo(videoRef.value, canvasRef.value)
+}
 </script>
 
 <template>
@@ -32,6 +36,10 @@ onMounted(() => {
         选择本地文件
       </AButton>
     </ASpace>
-    <video class="h-full w-full" :src="videoUrl" controls />
+
+    <div v-show="videoUrl" class="relative h-full w-full">
+      <video ref="videoRef" class="h-full w-full" :src="videoUrl" controls autoplay @play="onVideoPlayDetect" />
+      <canvas ref="canvasRef" class="absolute top-0 w-full h-full pointer-events-none" :width="inputShape[1]" :height="inputShape[2]" />
+    </div>
   </div>
 </template>

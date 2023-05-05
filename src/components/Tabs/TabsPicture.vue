@@ -1,5 +1,45 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useFileSystemAccess } from '@vueuse/core'
+
+const canvasRef = ref()
+const imageRef = ref()
+const dataType = ref('Blob') as Ref<'Text' | 'ArrayBuffer' | 'Blob'>
+const { isSupported, file, open } = useFileSystemAccess({
+  dataType,
+  types: [{
+    description: 'Image files',
+    accept: {
+      'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.bmp'],
+    },
+  }],
+  excludeAcceptAllOption: true,
+})
+const imageUrl = ref('')
+watch(() => file.value, () => {
+  if (file.value)
+    imageUrl.value = URL.createObjectURL(file.value)
+})
+onMounted(() => {
+  if (!isSupported.value)
+    alert('该浏览器不支持 File System Access API !')
+})
+function onImageLoadDetect() {
+  //
+  detect(imageRef.value, canvasRef.value)
+}
+</script>
 
 <template>
-  开发中
+  <div class="flex flex-col justify-start">
+    <ASpace class="mb-10px">
+      <AButton @click="open()">
+        选择本地文件
+      </AButton>
+    </ASpace>
+
+    <div v-show="imageUrl" class="relative h-full w-full">
+      <img ref="imageRef" class="h-full w-full" :src="imageUrl" controls @load="onImageLoadDetect">
+      <canvas ref="canvasRef" class="absolute top-0 w-full h-full pointer-events-none" :width="inputShape[1]" :height="inputShape[2]" />
+    </div>
+  </div>
 </template>
