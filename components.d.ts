@@ -9,18 +9,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DetectCanvas: typeof import('./src/components/DetectCanvas.vue')['default']
     FullScreenBtn: typeof import('./src/components/FullScreenBtn.vue')['default']
     Hello: typeof import('./src/components/Hello.vue')['default']
-    ParentSelect: typeof import('./src/components/ParentSelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TabsPicture: typeof import('./src/components/Tabs/TabsPicture.vue')['default']
     TabsVideo: typeof import('./src/components/Tabs/TabsVideo.vue')['default']
     TabsWebCam: typeof import('./src/components/Tabs/TabsWebCam.vue')['default']
     TabsWebRTC: typeof import('./src/components/Tabs/TabsWebRTC.vue')['default']
-    TabVideo: typeof import('./src/components/Tabs/TabVideo.vue')['default']
     VideoRtc: typeof import('./src/components/VideoRtc.vue')['default']
-    WebRTC: typeof import('./src/components/Tabs/WebRTC.vue')['default']
   }
 }

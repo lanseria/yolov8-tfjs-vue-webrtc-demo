@@ -11,3 +11,11 @@ export const model: {
 export const inputShape = ref<number[]>([1, 0, 0, 3])
 // model configs
 export const modelName = 'yolov8n'
+
+export const tfjsLoading = ref(true)
+export const tfjsProgress = ref(0)
+export const tfjsSpinTip = computed(() => {
+  return `Loading model... ${(tfjsProgress.value * 100).toFixed(2)}%`
+})
+
+export const globalActiveKey = ref('1')

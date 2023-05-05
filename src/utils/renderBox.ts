@@ -8,7 +8,7 @@ import labels from './labels.json'
  * @param {Array} classes_data class array
  * @param {Array[Number]} ratios boxes ratio [xRatio, yRatio]
  */
-export function renderBoxes(canvasRef: HTMLCanvasElement, boxes_data: Float32Array | Int32Array | Uint8Array, scores_data: any[], classes_data: any[], ratios: any[]) {
+export function renderBoxes(canvasRef: HTMLCanvasElement, boxes_data: Float32Array | Int32Array | Uint8Array, scores_data: Float32Array | Int32Array | Uint8Array, classes_data: Float32Array | Int32Array | Uint8Array, ratios: any[]) {
   const ctx = canvasRef.getContext('2d')
   if (ctx) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height) // clean canvas

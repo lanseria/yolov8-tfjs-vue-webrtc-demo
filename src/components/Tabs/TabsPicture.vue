@@ -4,6 +4,7 @@ import { useFileSystemAccess } from '@vueuse/core'
 const canvasRef = ref()
 const imageRef = ref()
 const dataType = ref('Blob') as Ref<'Text' | 'ArrayBuffer' | 'Blob'>
+const imageUrl = ref('')
 const { isSupported, file, open } = useFileSystemAccess({
   dataType,
   types: [{
@@ -14,7 +15,6 @@ const { isSupported, file, open } = useFileSystemAccess({
   }],
   excludeAcceptAllOption: true,
 })
-const imageUrl = ref('')
 watch(() => file.value, () => {
   if (file.value)
     imageUrl.value = URL.createObjectURL(file.value)
@@ -22,6 +22,10 @@ watch(() => file.value, () => {
 onMounted(() => {
   if (!isSupported.value)
     alert('该浏览器不支持 File System Access API !')
+})
+watch(() => globalActiveKey.value, () => {
+  URL.revokeObjectURL(imageUrl.value)
+  imageUrl.value = ''
 })
 function onImageLoadDetect() {
   //

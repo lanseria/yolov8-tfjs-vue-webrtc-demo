@@ -2,8 +2,9 @@
 import { useFileSystemAccess } from '@vueuse/core'
 
 const canvasRef = ref()
-const videoRef = ref()
+const videoRef = ref<HTMLVideoElement>()
 const dataType = ref('Blob') as Ref<'Text' | 'ArrayBuffer' | 'Blob'>
+const videoUrl = ref('')
 const { isSupported, file, open } = useFileSystemAccess({
   dataType,
   types: [{
@@ -14,7 +15,6 @@ const { isSupported, file, open } = useFileSystemAccess({
   }],
   excludeAcceptAllOption: true,
 })
-const videoUrl = ref('')
 watch(() => file.value, () => {
   if (file.value)
     videoUrl.value = URL.createObjectURL(file.value)
@@ -23,9 +23,16 @@ onMounted(() => {
   if (!isSupported.value)
     alert('该浏览器不支持 File System Access API !')
 })
+
+watch(() => globalActiveKey.value, () => {
+  const url = videoUrl.value
+  URL.revokeObjectURL(url)
+  videoUrl.value = ''
+  videoRef.value?.pause()
+})
 function onVideoPlayDetect() {
   //
-  detectVideo(videoRef.value, canvasRef.value)
+  detectVideo(videoRef.value!, canvasRef.value)
 }
 </script>
 
@@ -37,8 +44,8 @@ function onVideoPlayDetect() {
       </AButton>
     </ASpace>
 
-    <div v-show="videoUrl" class="relative h-full w-full">
-      <video ref="videoRef" class="h-full w-full" :src="videoUrl" controls autoplay @play="onVideoPlayDetect" />
+    <div class="relative h-full w-full">
+      <video v-show="videoUrl" ref="videoRef" class="h-full w-full" :src="videoUrl" controls autoplay @play="onVideoPlayDetect" />
       <canvas ref="canvasRef" class="absolute top-0 w-full h-full pointer-events-none" :width="inputShape[1]" :height="inputShape[2]" />
     </div>
   </div>

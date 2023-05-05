@@ -42,8 +42,10 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const globalActiveKey: typeof import('./src/composables/global')['globalActiveKey']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const initNet: typeof import('./src/composables/actions')['initNet']
   const inject: typeof import('vue')['inject']
   const inputShape: typeof import('./src/composables/global')['inputShape']
   const isDark: typeof import('./src/composables/dark')['isDark']
@@ -52,6 +54,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const loadTfModels: typeof import('./src/composables/actions')['loadTfModels']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const model: typeof import('./src/composables/global')['model']
@@ -101,6 +104,9 @@ declare global {
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const tf: typeof import('./src/composables/global')['tf']
+  const tfjsLoading: typeof import('./src/composables/global')['tfjsLoading']
+  const tfjsProgress: typeof import('./src/composables/global')['tfjsProgress']
+  const tfjsSpinTip: typeof import('./src/composables/global')['tfjsSpinTip']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const toRaw: typeof import('vue')['toRaw']
@@ -341,8 +347,10 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly globalActiveKey: UnwrapRef<typeof import('./src/composables/global')['globalActiveKey']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initNet: UnwrapRef<typeof import('./src/composables/actions')['initNet']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly inputShape: UnwrapRef<typeof import('./src/composables/global')['inputShape']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
@@ -351,6 +359,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly loadTfModels: UnwrapRef<typeof import('./src/composables/actions')['loadTfModels']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly model: UnwrapRef<typeof import('./src/composables/global')['model']>
@@ -400,6 +409,9 @@ declare module 'vue' {
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly tf: UnwrapRef<typeof import('./src/composables/global')['tf']>
+    readonly tfjsLoading: UnwrapRef<typeof import('./src/composables/global')['tfjsLoading']>
+    readonly tfjsProgress: UnwrapRef<typeof import('./src/composables/global')['tfjsProgress']>
+    readonly tfjsSpinTip: UnwrapRef<typeof import('./src/composables/global')['tfjsSpinTip']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

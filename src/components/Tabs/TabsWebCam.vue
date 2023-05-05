@@ -17,6 +17,9 @@ watchEffect(() => {
   if (videoRef.value)
     videoRef.value.srcObject = stream.value!
 })
+watch(() => globalActiveKey.value, () => {
+  videoRef.value?.pause()
+})
 function onVideoPlayDetect() {
   //
   detectVideo(videoRef.value!, canvasRef.value)
