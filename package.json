@@ -1,0 +1,39 @@
+{
+  "name": "arco-uno-basic-template",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "up": "taze major -I"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "2.45.2",
+    "@vueuse/core": "^10.1.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.38.5",
+    "@iconify-json/carbon": "^1.1.16",
+    "@types/node": "^18.16.1",
+    "@unocss/reset": "^0.51.8",
+    "@vitejs/plugin-vue": "^4.2.1",
+    "eslint": "^8.39.0",
+    "pnpm": "^8.3.1",
+    "taze": "^0.9.2",
+    "typescript": "^5.0.4",
+    "unocss": "^0.51.8",
+    "unplugin-auto-import": "^0.15.3",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.3.2",
+    "vite-plugin-pages": "^0.29.0",
+    "vue-tsc": "^1.4.4"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  }
+}
