@@ -1,39 +1,7 @@
-# Arco Uno Basic Template
+# yolov8-tfjs-vue-webrtc-demo
 
-## Features
+## Description
 
-- ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite 3](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
+"yolov8-tfjs-vue-webrtc-demo"是一个利用深度学习目标检测模型YOLOv8、TensorFlow.js框架、Vue.js框架和WebRTC技术实现的演示项目。该项目可以通过前端界面实时展示视频流，并对视频中的目标进行实时检测和识别。借助GPU加速的WebGL后端，该项目能够实现快速高效的模型推理，同时通过WebRTC技术，还能够实现点对点的视频传输，为实时应用提供了强大的支持。"
 
-- 🗂 [File based routing](./src/pages)
-
-- 📦 [Components auto importing](./src/components)
-
-- 🎨 [UnoCSS](https://github.com/antfu/unocss) - The instant on-demand atomic CSS engine.
-
-- 😃 Use icons from any icon sets in [Pure CSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
-
-- 🔥 Use the [new `<script setup>` style](https://github.com/vuejs/rfcs/pull/227)
-
-- ✅ Use [Arco UI](https://arco.design/vue/docs/start) UI Framework
-
-- 🦾 TypeScript, of course
-
-- ☁️ Deploy on Netlify, zero-config
-
-## Try it now!
-
-> arco-uno-basic-template requires Node >=14.18
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/lanseria/arco-uno-basic-template/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-```bash
-npx degit lanseria/arco-uno-basic-template my-arco-uno-app
-cd my-arco-uno-app
-pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
-```
+"yolov8-tfjs-vue-webrtc-demo" is a demonstration project that utilizes the YOLOv8 deep learning object detection model, the TensorFlow.js framework, the Vue.js framework, and WebRTC technology. This project can display video streams in real-time through a front-end interface, and perform real-time detection and recognition of objects in the video. With the GPU-accelerated WebGL backend, this project can achieve fast and efficient model inference. Additionally, using WebRTC technology, it can enable peer-to-peer video transmission, providing powerful support for real-time applications.

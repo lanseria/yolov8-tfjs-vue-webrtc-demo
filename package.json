@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "2.45.2",
+    "@tensorflow/tfjs": "^4.5.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.5.0",
     "@vueuse/core": "^10.1.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
