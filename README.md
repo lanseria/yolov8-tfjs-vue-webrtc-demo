@@ -30,3 +30,11 @@ export const modelName = 'your model prefix name '
 ```bash
 pnpm i && pnpm dev
 ```
+
+## useable models 可用模型
+
+- 安全帽检测 https://huggingface.co/lanseria/yolov8n-hard-hat-detection_web_model
+
+## webRTC 依赖项目请使用 go2RTC 
+
+- go2rtc https://github.com/AlexxIT/go2rtc
