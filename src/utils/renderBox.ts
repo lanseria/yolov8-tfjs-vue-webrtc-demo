@@ -38,7 +38,7 @@ export function renderBoxes(canvasRef: HTMLCanvasElement, boxes_data: Float32Arr
       const height = y2 - y1
 
       // draw box.
-      ctx.fillStyle = Colors.hexToRgba(color, 0.2)
+      ctx.fillStyle = Colors.hexToRgba(color, 0.2)!
       ctx.fillRect(x1, y1, width, height)
 
       // draw border box.
@@ -66,6 +66,8 @@ export function renderBoxes(canvasRef: HTMLCanvasElement, boxes_data: Float32Arr
 }
 
 class Colors {
+  palette: string[]
+  n: number
   // ultralytics color palette https://ultralytics.com/
   constructor() {
     this.palette = [
@@ -93,9 +95,9 @@ class Colors {
     this.n = this.palette.length
   }
 
-  get = i => this.palette[Math.floor(i) % this.n]
+  get = (i: number) => this.palette[Math.floor(i) % this.n]
 
-  static hexToRgba = (hex, alpha) => {
+  static hexToRgba = (hex: string, alpha: number) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
     return result
       ? `rgba(${[parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)].join(

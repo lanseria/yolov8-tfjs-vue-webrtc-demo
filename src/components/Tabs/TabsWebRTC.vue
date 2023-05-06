@@ -11,6 +11,9 @@ function onVideoPlayDetect(videoRef: Ref<HTMLVideoElement>) {
   //
   detectVideo(videoRef.value, canvasRef.value)
 }
+watch(() => globalActiveKey.value, () => {
+  unDetectVideo()
+})
 </script>
 
 <template>
@@ -25,7 +28,7 @@ function onVideoPlayDetect(videoRef: Ref<HTMLVideoElement>) {
         </a-button>
       </a-form-item>
     </a-form>
-    <div v-if="isPlay" class="relative">
+    <div v-if="isPlay" class="relative h-full w-full">
       <VideoRtc :suuid="form.suuid" @play="onVideoPlayDetect" />
       <canvas ref="canvasRef" class="absolute top-0 w-full h-full" :width="inputShape[1]" :height="inputShape[2]" />
     </div>

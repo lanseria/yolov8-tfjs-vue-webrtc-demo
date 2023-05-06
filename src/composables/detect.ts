@@ -3,7 +3,7 @@ import labels from '~/utils/labels.json'
 import { renderBoxes } from '~/utils/renderBox'
 
 const numClass = labels.length
-
+let animationId = -1
 /**
  * Preprocess image / frame before forwarded into the model
  * @param {HTMLVideoElement|HTMLImageElement} source
@@ -112,9 +112,13 @@ export function detectVideo(vidSource: HTMLVideoElement, canvasRef: HTMLCanvasEl
     }
 
     detect(vidSource, canvasRef, () => {
-      requestAnimationFrame(detectFrame) // get another frame
+      animationId = requestAnimationFrame(detectFrame) // get another frame
     })
   }
 
   detectFrame() // initialize to detect every frame
+}
+export function unDetectVideo() {
+  console.warn('unDetectVideo')
+  cancelAnimationFrame(animationId)
 }

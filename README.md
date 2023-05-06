@@ -8,4 +8,25 @@
 
 ## Demo
 
+link: https://yolov8-tfjs-vue-webrtc-demo.netlify.app/
+
 ![demo](docs/video.png)
+
+## how to use 如何使用
+
+将 YOLOv8 转换为 tfjs 模型，并将其放入 public 文件夹中。
+打开 [global.ts](src/composables/global.ts) 文件并将以下代码块：
+```ts
+export const modelName = 'yolov8n'
+// replace
+export const modelName = 'your model prefix name '
+```
+编辑 labels.json 文件以匹配您的模型输出标签。
+
+[labels.json](src/utils/labels.json)文件
+
+在终端中运行以下命令：
+
+```bash
+pnpm i && pnpm dev
+```
