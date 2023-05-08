@@ -20,6 +20,10 @@ link: https://yolov8-tfjs-vue-webrtc-demo.netlify.app/
 export const modelName = 'yolov8n'
 // replace
 export const modelName = 'your model prefix name '
+
+// if chrome version 113 above you can use webgpu
+import '@tensorflow/tfjs-backend-webgpu';
+// import '@tensorflow/tfjs-backend-webgl';
 ```
 编辑 labels.json 文件以匹配您的模型输出标签。
 
