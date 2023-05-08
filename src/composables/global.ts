@@ -1,5 +1,6 @@
 import type { GraphModel, io } from '@tensorflow/tfjs'
-import '@tensorflow/tfjs-backend-webgl'
+import '@tensorflow/tfjs-backend-webgpu';
+// import '@tensorflow/tfjs-backend-webgl';
 
 export * as tf from '@tensorflow/tfjs'
 
