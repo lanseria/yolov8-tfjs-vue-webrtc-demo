@@ -17,12 +17,13 @@ link: https://yolov8-tfjs-vue-webrtc-demo.netlify.app/
 将 YOLOv8 转换为 tfjs 模型，并将其放入 public 文件夹中。
 打开 [global.ts](src/composables/global.ts) 文件并将以下代码块：
 ```ts
+// if chrome version 113 above you can use webgpu
+import '@tensorflow/tfjs-backend-webgpu'
+
 export const modelName = 'yolov8n'
 // replace
 export const modelName = 'your model prefix name '
 
-// if chrome version 113 above you can use webgpu
-import '@tensorflow/tfjs-backend-webgpu';
 // import '@tensorflow/tfjs-backend-webgl';
 ```
 编辑 labels.json 文件以匹配您的模型输出标签。
@@ -42,3 +43,7 @@ pnpm i && pnpm dev
 ## webRTC 依赖项目请使用 go2RTC 
 
 - go2rtc https://github.com/AlexxIT/go2rtc
+
+## yolov8 model 转为 tfjs model 方式
+
+- reference https://github.com/Hyuto/yolov8-tfjs
