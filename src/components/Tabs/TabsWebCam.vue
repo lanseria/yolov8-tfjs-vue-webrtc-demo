@@ -11,7 +11,7 @@ const { videoInputs: cameras } = useDevicesList({
 })
 
 const { stream, enabled } = useUserMedia({
-  constraints: { video: { deviceId: currentCamera.value } },
+  constraints: { video: { deviceId: currentCamera } },
 })
 watchEffect(() => {
   if (videoRef.value)
@@ -21,7 +21,6 @@ watch(() => globalActiveKey.value, () => {
   videoRef.value?.pause()
 })
 function onVideoPlayDetect() {
-  //
   detectVideo(videoRef.value!, canvasRef.value)
 }
 </script>
@@ -37,8 +36,8 @@ function onVideoPlayDetect() {
       <div
         v-for="camera of cameras"
         :key="camera.deviceId"
-        class="px-2 py-1 cursor-pointer"
-        :class="{ 'text-primary': currentCamera === camera.deviceId }"
+        class="cursor-pointer px-2 py-1"
+        :class="{ 'text-blue-6': currentCamera === camera.deviceId }"
         @click="currentCamera = camera.deviceId"
       >
         {{ camera.label }}
@@ -46,7 +45,7 @@ function onVideoPlayDetect() {
     </div>
     <div v-show="enabled" class="relative h-full w-full">
       <video ref="videoRef" class="h-full w-full" controls autoplay @play="onVideoPlayDetect" />
-      <canvas ref="canvasRef" class="absolute top-0 w-full h-full pointer-events-none" :width="inputShape[1]" :height="inputShape[2]" />
+      <canvas ref="canvasRef" class="pointer-events-none absolute top-0 h-full w-full" :width="inputShape[1]" :height="inputShape[2]" />
     </div>
   </div>
 </template>
